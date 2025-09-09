@@ -11,7 +11,8 @@ s3-lambda-rds-lambda-redshift/
 
 ## ⚡ Pipeline Workflow
 
-![Pipeline Workflow](pipeline_workflow.png)
+![Pipeline Workflow](<img width="1536" height="1024" alt="pipeline_workflow" src="https://github.com/user-attachments/assets/1cb4e5e2-caa7-42e5-b715-eec96fa7e27a" />
+)
 
 **Workflow Steps:**
 1. **S3 Upload** → `Lambda1` triggers when a new file is uploaded.  
