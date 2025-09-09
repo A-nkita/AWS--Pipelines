@@ -1,0 +1,35 @@
+{
+  "Comment": "S3 → Lambda1 (Cleaner) → RDS → Lambda2 (Loader) → Redshift",
+  "StartAt": "CleanerLambda",
+  "States": {
+    "CleanerLambda": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:lambda1_cleaner",
+      "Next": "LoaderLambda",
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "FailState"
+        }
+      ]
+    },
+    "LoaderLambda": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:lambda2_loader",
+      "End": true,
+      "Catch": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "ResultPath": "$.error",
+          "Next": "FailState"
+        }
+      ]
+    },
+    "FailState": {
+      "Type": "Fail",
+      "Cause": "Pipeline Failed",
+      "Error": "StepFunctionExecutionError"
+    }
+  }
+}

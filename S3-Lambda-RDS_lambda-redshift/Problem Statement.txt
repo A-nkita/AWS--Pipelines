@@ -1,0 +1,41 @@
+Problem statement
+
+You receive CSV files dropped into an S3 bucket (raw/). Those CSVs may contain:
+
+empty/null cells,
+
+duplicate rows,
+
+messy column names (spaces, capitals, stray characters),
+
+leading/trailing whitespace.
+
+Goal:
+
+Automatically trigger a Lambda on S3 file arrival to clean the CSV:
+
+trim strings,
+
+normalize column names,
+
+drop rows with any nulls,
+
+drop exact duplicate rows.
+
+Store cleaned data into RDS (Postgres) table cleaned_data.
+
+Periodically (or manually) run a second Lambda that:
+
+extracts the cleaned data from RDS,
+
+uploads an extract (CSV) to S3 under processed/,
+
+instructs Redshift to COPY that file from S3 into table final_data.
+
+Provide infra-as-code (Terraform), scripts to package/deploy Lambdas, and a sample raw CSV to test.
+
+Success criteria:
+
+Cleaned records end up in RDS table cleaned_data.
+
+Redshift has the same data in final_data.
