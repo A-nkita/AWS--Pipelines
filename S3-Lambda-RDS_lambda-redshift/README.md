@@ -36,7 +36,7 @@ pip install -r requirements.txt
 ## ⚡ Pipeline Workflow
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[S3 Bucket (Raw Data)] -->|Trigger| B(Lambda1: Cleaner)
     B --> C(RDS Database)
     C -->|Trigger| D(Lambda2: Loader)
