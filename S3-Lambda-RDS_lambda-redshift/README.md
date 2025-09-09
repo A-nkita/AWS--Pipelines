@@ -41,3 +41,4 @@ flowchart LR
     B --> C(RDS Database)
     C -->|Trigger| D(Lambda2: Loader)
     D --> E(Redshift Warehouse)
+```
