@@ -10,18 +10,15 @@ s3-lambda-rds-lambda-redshift/
 └── LICENSE # MIT License
 
 ## ⚡ Pipeline Workflow
-flowchart TD
-    A[S3 Bucket (Raw Data)] --> B[Lambda1: Cleaner]
-    B --> C[RDS Database]
-    C --> D[Lambda2: Loader]
-    D --> E[Redshift Warehouse]
 
-## Workflow Steps:
-1. S3 Upload → Lambda1 triggers when a new file is uploaded.
-2. Lambda1: Cleaner → Cleans, validates, and transforms raw data.
-3. RDS Database → Stores intermediate cleaned data.
-4. Lambda2: Loader → Loads data from RDS into Redshift.
-5. Redshift Warehouse → Data ready for analytics & reporting.
+![Pipeline Workflow](pipeline_workflow.png)
+
+**Workflow Steps:**
+1. **S3 Upload** → `Lambda1` triggers when a new file is uploaded.  
+2. **Lambda1: Cleaner** → Cleans, validates, and transforms raw data.  
+3. **RDS Database** → Stores intermediate cleaned data.  
+4. **Lambda2: Loader** → Loads data from RDS into Redshift.  
+5. **Redshift Warehouse** → Data ready for analytics & reporting.
 
 ## Installation & Setup
 1. Clone the repository:
