@@ -30,3 +30,14 @@ pip install -r requirements.txt
 **Notes:**
 - Ensure RDS and Redshift tables exist before running Lambda2.
 - Adjust Lambda memory and timeout based on data size.
+
+---
+
+## ⚡ Pipeline Workflow
+
+```mermaid
+flowchart LR
+    A[S3 Bucket (Raw Data)] -->|Trigger| B(Lambda1: Cleaner)
+    B --> C(RDS Database)
+    C -->|Trigger| D(Lambda2: Loader)
+    D --> E(Redshift Warehouse)
